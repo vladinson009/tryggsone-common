@@ -6,7 +6,7 @@
   "version": "1.0.9",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vladinson009/tryggsone/common.git"
+    "url": "https://github.com/vladinson009/tryggsone-common.git"
   },
   "description": "Reusable RabbitMQ connection, publisher, and listener classes for microservices",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "release:patch": "npm version patch && npm publish",
+    "patch": "npm version patch",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish"
   },

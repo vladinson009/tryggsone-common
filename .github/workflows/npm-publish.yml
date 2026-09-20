@@ -27,10 +27,10 @@ jobs:
       - name: Ensure latest npm (required for OIDC support)
         run: npm install -g npm@latest
 
-      - name: Strip empty _authToken from .npmrc (let OIDC kick in)
-        run: |
-          npmrc="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
-          sed -i '/_authToken/d' "$npmrc"
+      # - name: Strip empty _authToken from .npmrc (let OIDC kick in)
+      #   run: |
+      #     npmrc="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+      #     sed -i '/_authToken/d' "$npmrc"
 
       - name: Install dependencies
         run: npm ci
