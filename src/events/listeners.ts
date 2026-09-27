@@ -1,31 +1,31 @@
 import { type ConsumeMessage, type Channel } from 'amqplib';
 
-export interface TopicListenerOptions {
+export interface TopicListenerOptions<T> {
   exchange: string;
   exchangeType?: 'topic' | 'direct' | 'fanout';
   queuePrefix: string; // e.g. 'q.bikes' -> queues become 'q.bikes.created', 'q.bikes.updated', ...
   routingKeys: string[]; // e.g. ['bikes.created', 'bikes.updated', 'bikes.deleted']
   onMessage: (
     routingKey: string,
-    payload: unknown,
+    payload: T,
     msg: ConsumeMessage,
   ) => void | Promise<void>;
   onError?: (context: string, err: unknown) => void;
 }
 
-export class TopicListener {
+export class TopicListener<T> {
   private readonly exchange: string;
   private readonly exchangeType: 'topic' | 'direct' | 'fanout';
   private readonly queuePrefix: string;
   private readonly routingKeys: string[];
   private readonly onMessage: (
     routingKey: string,
-    payload: unknown,
+    payload: T,
     msg: ConsumeMessage,
   ) => void | Promise<void>;
   private readonly onError: (context: string, err: unknown) => void;
 
-  constructor(options: TopicListenerOptions) {
+  constructor(options: TopicListenerOptions<T>) {
     this.exchange = options.exchange;
     this.exchangeType = options.exchangeType ?? 'topic';
     this.queuePrefix = options.queuePrefix;
@@ -60,7 +60,7 @@ export class TopicListener {
       }
 
       try {
-        const payload = JSON.parse(msg.content.toString());
+        const payload: T = JSON.parse(msg.content.toString());
         await this.onMessage(routingKey, payload, msg);
         channel.ack(msg);
       } catch (err) {
