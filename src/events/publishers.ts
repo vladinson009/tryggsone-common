@@ -44,6 +44,9 @@ export class TopicPublisher {
 
       const ok = channel.publish(this.exchange, routingKey, body, {
         persistent: true,
+        messageId: crypto.randomUUID(),
+        correlationId: crypto.randomUUID(),
+        contentType: 'application/json',
       });
 
       if (!ok) {
