@@ -1,11 +1,15 @@
-import { type Channel } from 'amqplib';
+import { type ConsumeMessage, type Channel } from 'amqplib';
 
 export interface TopicListenerOptions {
   exchange: string;
   exchangeType?: 'topic' | 'direct' | 'fanout';
   queuePrefix: string; // e.g. 'q.bikes' -> queues become 'q.bikes.created', 'q.bikes.updated', ...
   routingKeys: string[]; // e.g. ['bikes.created', 'bikes.updated', 'bikes.deleted']
-  onMessage: (routingKey: string, payload: unknown) => void | Promise<void>;
+  onMessage: (
+    routingKey: string,
+    payload: unknown,
+    msg: ConsumeMessage,
+  ) => void | Promise<void>;
   onError?: (context: string, err: unknown) => void;
 }
 
@@ -17,6 +21,7 @@ export class TopicListener {
   private readonly onMessage: (
     routingKey: string,
     payload: unknown,
+    msg: ConsumeMessage,
   ) => void | Promise<void>;
   private readonly onError: (context: string, err: unknown) => void;
 
@@ -56,7 +61,7 @@ export class TopicListener {
 
       try {
         const payload = JSON.parse(msg.content.toString());
-        await this.onMessage(routingKey, payload);
+        await this.onMessage(routingKey, payload, msg);
         channel.ack(msg);
       } catch (err) {
         this.onError(`Failed to process ${routingKey}`, err);
