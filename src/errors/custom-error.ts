@@ -1,4 +1,3 @@
-import type { ContentfulStatusCode } from './types.js';
 
 export type Code =
   | 'BAD_REQUEST'
@@ -12,7 +11,7 @@ export type Code =
 
 export abstract class CustomError extends Error {
   abstract readonly code: string;
-  abstract readonly status: ContentfulStatusCode;
+  abstract readonly status: number;
   readonly isCustomError = true;
 
   constructor(message: string, options?: ErrorOptions) {
@@ -24,7 +23,7 @@ export abstract class CustomError extends Error {
 export class ServiceError extends CustomError {
   constructor(
     public readonly code: Code,
-    public readonly status: ContentfulStatusCode,
+    public readonly status: number,
     message: string,
     options?: ErrorOptions,
   ) {
