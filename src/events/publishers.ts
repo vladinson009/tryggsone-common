@@ -47,6 +47,7 @@ export class TopicPublisher {
         messageId: crypto.randomUUID(),
         correlationId: crypto.randomUUID(),
         contentType: 'application/json',
+        timestamp: Date.now(),
       });
 
       if (!ok) {
