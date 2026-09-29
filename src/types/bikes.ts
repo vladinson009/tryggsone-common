@@ -1,0 +1,25 @@
+export type BikeResponse = {
+  id: string;
+  ownerId: string;
+  frameNumber: string;
+  status: 'active' | 'for_sale' | 'stolen' | 'deleted';
+  brand: string;
+  model: string;
+  year: number;
+  color: string;
+  type: string;
+  frameSize: string | null;
+  wheelSize: string | null;
+  weight: number | null;
+  isElectric: boolean;
+  motorBrand: string | null;
+  motorPower: number | null;
+  batteryCapacity: number | null;
+  condition: string;
+  price: number;
+  currency: string;
+  description: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  isApproved: boolean;
+};
