@@ -1,9 +1,9 @@
 {
-  "name": "@tryggsone",
+  "name": "@tryggsone/common",
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.19",
+  "version": "1.0.18",
   "repository": {
     "type": "git",
     "url": "https://github.com/vladinson009/tryggsone-common.git"
