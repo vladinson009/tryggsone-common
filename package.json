@@ -1,5 +1,5 @@
 {
-  "name": "@tryggsone/common",
+  "name": "@tryggsone",
   "publishConfig": {
     "access": "public"
   },
