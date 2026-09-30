@@ -3,24 +3,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "exports": {
-    "./errors": {
-      "types": "./dist/errors/index.d.ts",
-      "default": "./dist/errors/index.js"
-    },
-    "./events": {
-      "types": "./dist/events/index.d.ts",
-      "default": "./dist/events/index.js"
-    },
-    "./keys": {
-      "types": "./dist/keys/index.d.ts",
-      "default": "./dist/keys/index.js"
-    },
-    "./types": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/types/index.js"
-    }
-  },
   "version": "1.0.17",
   "repository": {
     "type": "git",
@@ -40,6 +22,24 @@
     "patch": "npm version patch",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish"
+  },
+  "exports": {
+    "./errors": {
+      "types": "./dist/errors/index.d.ts",
+      "default": "./dist/errors/index.js"
+    },
+    "./events": {
+      "types": "./dist/events/index.d.ts",
+      "default": "./dist/events/index.js"
+    },
+    "./keys": {
+      "types": "./dist/keys/index.d.ts",
+      "default": "./dist/keys/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/types/index.js"
+    }
   },
   "peerDependencies": {
     "amqplib": "^2.0.1"
