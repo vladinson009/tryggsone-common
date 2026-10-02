@@ -39,6 +39,14 @@
     "./types": {
       "types": "./dist/types/index.d.ts",
       "default": "./dist/types/index.js"
+    },
+    "./configs": {
+      "types": "./dist/configs/index.d.ts",
+      "default": "./dist/configs/index.js"
+    },
+    "./libs": {
+      "types": "./dist/libs/index.d.ts",
+      "default": "./dist/libs/index.js"
     }
   },
   "peerDependencies": {

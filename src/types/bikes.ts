@@ -15,11 +15,31 @@ export type BikeResponse = {
   motorBrand: string | null;
   motorPower: number | null;
   batteryCapacity: number | null;
-  condition: string;
+  condition: 'new' | 'like_new' | 'good' | 'fair' | 'poor' | 'for_parts' | 'unknown';
   price: number;
   currency: string;
   description: string | null;
   createdAt: Date;
   updatedAt: Date;
   isApproved: boolean;
+};
+export type BikesForSaleResponse = {
+  id: string;
+  ownerId: string;
+  description: string | null;
+  status: 'active' | 'for_sale' | 'stolen' | 'deleted';
+  brand: string;
+  model: string;
+  isElectric: boolean;
+  condition: 'new' | 'like_new' | 'good' | 'fair' | 'poor' | 'for_parts' | 'unknown';
+  price: number;
+  updatedAt: Date;
+  photo: string | null;
+};
+export type AddBikeAddressResponse = {
+  id: string;
+  bikeId: string;
+  postCode: string;
+  city: string;
+  street: string;
 };
