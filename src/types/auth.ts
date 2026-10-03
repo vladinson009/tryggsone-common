@@ -22,3 +22,4 @@ export type AuthSession = {
   userAgent?: string | null | undefined;
   impersonatedBy?: string | null | undefined;
 };
+export type SessionResponse = { user: AuthUser; session: AuthSession };
