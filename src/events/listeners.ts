@@ -1,31 +1,31 @@
 import { type ConsumeMessage, type Channel } from 'amqplib';
 //TODO: Fix Listener
-export interface TopicListenerOptions<T> {
+export interface TopicListenerOptions {
   exchange: string;
   exchangeType?: 'topic' | 'direct' | 'fanout';
   queuePrefix: string; // e.g. 'q.bikes' -> queues become 'q.bikes.created', 'q.bikes.updated', ...
   routingKeys: string[]; // e.g. ['bikes.created', 'bikes.updated', 'bikes.deleted']
   onMessage: (
     routingKey: string,
-    payload: T,
+    payload: unknown,
     msg: ConsumeMessage,
   ) => void | Promise<void>;
   onError?: (context: string, err: unknown) => void;
 }
 
-export class TopicListener<T> {
+export class TopicListener {
   private readonly exchange: string;
   private readonly exchangeType: 'topic' | 'direct' | 'fanout';
   private readonly queuePrefix: string;
   private readonly routingKeys: string[];
   private readonly onMessage: (
     routingKey: string,
-    payload: T,
+    payload: unknown,
     msg: ConsumeMessage,
   ) => void | Promise<void>;
   private readonly onError: (context: string, err: unknown) => void;
 
-  constructor(options: TopicListenerOptions<T>) {
+  constructor(options: TopicListenerOptions) {
     this.exchange = options.exchange;
     this.exchangeType = options.exchangeType ?? 'topic';
     this.queuePrefix = options.queuePrefix;
@@ -46,7 +46,10 @@ export class TopicListener<T> {
     }
   }
 
-  private async registerOne(channel: Channel, routingKey: string): Promise<void> {
+  private async registerOne(
+    channel: Channel,
+    routingKey: string,
+  ): Promise<void> {
     const eventSuffix = routingKey.split('.').pop(); // 'bikes.created' -> 'created'
     const queueName = `${this.queuePrefix}.${eventSuffix}`;
 
@@ -60,7 +63,7 @@ export class TopicListener<T> {
       }
 
       try {
-        const payload: T = JSON.parse(msg.content.toString());
+        const payload: unknown = JSON.parse(msg.content.toString());
         await this.onMessage(routingKey, payload, msg);
         channel.ack(msg);
       } catch (err) {
