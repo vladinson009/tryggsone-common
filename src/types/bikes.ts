@@ -44,7 +44,7 @@ export type BikeResponse = {
   updatedAt: Date;
   isApproved: boolean;
 };
-export type BikesForSaleResponse = {
+export type BikeForSaleResponse = {
   id: string;
   ownerId: string;
   description: string | null;
@@ -64,14 +64,14 @@ export type BikesForSaleResponse = {
   updatedAt: Date;
   photo: string | null;
 };
-export type AddBikeAddressResponse = {
+export type BikeAddAddressResponse = {
   id: string;
   bikeId: string;
   postCode: string;
   city: string;
   street: string;
 };
-export type GetBikeByIdResponse = {
+export type BikeGetByIdResponse = {
   bike: BikeResponse;
   address: BikeAddress;
   photos: BikePhoto;
