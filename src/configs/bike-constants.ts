@@ -1,4 +1,4 @@
-export const BIKE_CONST = {
+export const BIKE_ROUTES = {
   root: '/',
   forSale: '/for-sale',
   addAddress: '/add-address',
