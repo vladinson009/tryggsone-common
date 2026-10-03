@@ -44,29 +44,25 @@ export type BikeAddress = {
   city: string;
   street: string;
 };
+export type BikeForSale = Omit<
+  Bike,
+  | 'frameNumber'
+  | 'year'
+  | 'color'
+  | 'type'
+  | 'frameSize'
+  | 'wheelSize'
+  | 'weight'
+  | 'motorBrand'
+  | 'motorPower'
+  | 'batteryCapacity'
+  | 'currency'
+  | 'createdAt'
+  | 'isApproved'
+> & { photo: string | null };
 
-export type BikeForSale = {
-  id: string;
-  ownerId: string;
-  description: string | null;
-  status: 'active' | 'for_sale' | 'stolen' | 'deleted';
-  brand: string;
-  model: string;
-  isElectric: boolean;
-  condition:
-    | 'new'
-    | 'like_new'
-    | 'good'
-    | 'fair'
-    | 'poor'
-    | 'for_parts'
-    | 'unknown';
-  price: number;
-  updatedAt: Date;
-  photo: string | null;
-};
 export type BikeGetByIdResponse = {
   bike: Bike;
-  address: Omit<BikeAddress, 'id, bikeId'> | null;
+  address: Omit<BikeAddress, 'id' | 'bikeId'> | null;
   photos: Omit<BikePhoto, 'bikeId'>[] | null;
 };
