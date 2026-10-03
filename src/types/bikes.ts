@@ -1,18 +1,4 @@
-type BikeAddress = {
-  postCode: string;
-  city: string;
-  street: string;
-} | null;
-type BikePhoto =
-  | {
-      id: string;
-      createdAt: Date;
-      url: string;
-      sortOrder: number;
-    }[]
-  | null;
-
-export type BikeResponse = {
+export type Bike = {
   id: string;
   ownerId: string;
   frameNumber: string;
@@ -44,7 +30,22 @@ export type BikeResponse = {
   updatedAt: Date;
   isApproved: boolean;
 };
-export type BikeForSaleResponse = {
+export type BikePhoto = {
+  id: string;
+  bikeId: string;
+  createdAt: Date;
+  url: string;
+  sortOrder: number;
+};
+export type BikeAddress = {
+  id: string;
+  bikeId: string;
+  postCode: string;
+  city: string;
+  street: string;
+};
+
+export type BikeForSale = {
   id: string;
   ownerId: string;
   description: string | null;
@@ -64,15 +65,8 @@ export type BikeForSaleResponse = {
   updatedAt: Date;
   photo: string | null;
 };
-export type BikeAddAddressResponse = {
-  id: string;
-  bikeId: string;
-  postCode: string;
-  city: string;
-  street: string;
-};
 export type BikeGetByIdResponse = {
-  bike: BikeResponse;
-  address: BikeAddress;
-  photos: BikePhoto;
+  bike: Bike;
+  address: Omit<BikeAddress, 'id, bikeId'> | null;
+  photos: Omit<BikePhoto, 'bikeId'>[] | null;
 };
