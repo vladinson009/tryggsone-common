@@ -20,8 +20,8 @@
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "patch": "npm version patch",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish"
+    "minor": "npm version minor",
+    "major": "npm version major"
   },
   "exports": {
     "./errors": {

@@ -66,3 +66,17 @@ export type BikeGetByIdResponse = {
   address: Omit<BikeAddress, 'id' | 'bikeId'> | null;
   photos: Omit<BikePhoto, 'bikeId'>[] | null;
 };
+
+export type BikeReportStolen = {
+  policeReportNumber: string;
+  theftDate: Date;
+  theftLocation: string;
+};
+
+export type BikeReportRecovered = {
+  recoveryDate: Date;
+  recoveryLocation: string;
+};
+export type BikeListForSale = {
+  price: number;
+};

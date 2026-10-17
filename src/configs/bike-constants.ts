@@ -5,4 +5,7 @@ export const BIKE_ROUTES = {
   addPhoto: '/add-photo',
   bikeId: '/:bikeId',
   apiBikes: '/api/bikes',
+  reportStolen: '/:bikeId/report-stolen',
+  reportRecovered: '/:bikeId/report-recovered',
+  listForSale: '/:bikeId/list-for-sale',
 } as const;
