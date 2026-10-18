@@ -44,7 +44,7 @@ export type BikeAddress = {
   city: string;
   street: string;
 };
-export type BikeForSale = Omit<
+export type BikeCard = Omit<
   Bike,
   | 'frameNumber'
   | 'year'
